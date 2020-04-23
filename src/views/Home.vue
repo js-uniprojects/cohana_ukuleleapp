@@ -1,18 +1,37 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <v-container class="sx12 sm6 ">
+    <v-layout row>
+      <Grid
+              v-for="(items) in menuItems"
+              v-bind:key="items"
+              v-bind:itemTitle=items.itemTitle
+              v-bind:itemIcon=items.itemIcon
+              v-bind:itemColor=items.itemColor
+              v-bind:itemLink="items.itemLink"
+      />
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+  import Grid from "../components/Grid";
+  export default {
+    name: 'Main',
+    components: {
+      Grid
+    },
 
-export default {
-  name: 'Home',
-  components: {
-    HelloWorld
-  }
-}
+    data: () => ({
+      menuItems: [
+        { itemIcon: 'mdi-information', itemTitle: 'Info', itemLink: '/information', itemColor: 'accent' },
+        { itemIcon: 'mdi-file-document-edit', itemTitle: 'Get Ready', itemLink: '/preparation', itemColor: 'secondary' },
+        { itemIcon: 'mdi-music-circle', itemTitle: 'Learn', itemLink:'/learn', itemColor: 'success' },
+      ]
+    }),
+  };
+
 </script>
+
+<style>
+
+</style>
